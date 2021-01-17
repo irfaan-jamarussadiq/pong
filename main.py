@@ -10,6 +10,7 @@ pygame.init()
 game = Game(width, height, 'Player', 'Opponent')
 
 screen = pygame.display.set_mode((width, height))
+pygame.display.set_caption('Pong')
 clock = pygame.time.Clock()
 
 while True:
