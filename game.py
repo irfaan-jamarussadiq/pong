@@ -27,9 +27,9 @@ class Game():
             self.display_winner(screen)
 
     def get_winner(self):
-        if self.player.score >= 2:
+        if self.player.score >= 11:
             return self.player.name
-        elif self.opponent.score >= 2:
+        elif self.opponent.score >= 11:
             return self.opponent.name
         else:
             return None
