@@ -36,4 +36,4 @@ class Player():
     def display_winner_text(self, screen, x):
         font = pygame.font.Font('freesansbold.ttf', 32)
         player_text = font.render(f'{self.name} wins!', False, (255, 255, 255))
-        screen.blit(player_text, (int (screen.get_width() * x), 50))
+        screen.blit(player_text, (int (screen.get_width() * x), 80))

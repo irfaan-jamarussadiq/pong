@@ -27,18 +27,18 @@ class Game():
             self.display_winner(screen)
 
     def get_winner(self):
-        if self.player.score >= 11:
+        if self.player.score >= 2:
             return self.player.name
-        elif self.opponent.score >= 11:
+        elif self.opponent.score >= 2:
             return self.opponent.name
         else:
             return None
 
     def display_winner(self, screen):
         if self.get_winner() == self.player.name:
-            self.player.display_winner_text(screen, 0.2)
-        elif self.get_winner() == self.player.name:
-            self.player.display_winner_text(screen, 0.8)
+            self.player.display_winner_text(screen, 0.15)
+        elif self.get_winner() == self.opponent.name:
+            self.opponent.display_winner_text(screen, 0.6)
 
     def stop(self):
         self.ball.speed_x = 0
@@ -53,8 +53,8 @@ class Game():
         screen.fill(background)
         width = screen.get_width()
         pygame.draw.line(screen, line_color, [width/2, 0], [width/2, width], 1)
-        self.player.update_score_text(screen, 0.2)
-        self.opponent.update_score_text(screen, 0.8)
+        self.player.update_score_text(screen, 0.25)
+        self.opponent.update_score_text(screen, 0.75)
         self.update(screen)
 
         self.ball.draw(screen)
