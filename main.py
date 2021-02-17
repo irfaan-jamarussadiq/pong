@@ -7,7 +7,7 @@ frame_rate = 60
 
 pygame.init()
 
-game = Game(width, height, 'Player', 'Opponent')
+my_game = Game(width, height, 'Player', 'Opponent')
 
 screen = pygame.display.set_mode((width, height))
 pygame.display.set_caption('Pong')
@@ -20,14 +20,14 @@ while True:
             sys.exit()
         elif event.type == pygame.KEYDOWN:
             if event.key == pygame.K_UP:
-                game.player.move_up(20)
+                my_game.player.move_up(20)
             elif event.key == pygame.K_DOWN:
-                game.player.move_down(20)
+                my_game.player.move_down(20)
             elif event.key == pygame.K_a:
-                game.opponent.move_up(20)
+                my_game.opponent.move_up(20)
             elif event.key == pygame.K_b:
-                game.opponent.move_down(20)
+                my_game.opponent.move_down(20)
     
-    game.draw(screen)
+    my_game.draw(screen)
     pygame.display.update()
     clock.tick(frame_rate)

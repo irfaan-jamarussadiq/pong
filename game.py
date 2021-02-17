@@ -16,12 +16,8 @@ class Game():
         self.ball.move(screen, self.player, self.opponent)
 
         if self.get_winner() is None:
-            if self.ball.ball.left <= 0:
+            if self.ball.ball.left <= 0 or self.ball.ball.right >= screen.get_width():
                 self.restart_round(screen)
-                self.opponent.update_score()
-            elif self.ball.ball.right >= screen.get_width():
-                self.restart_round(screen)
-                self.player.update_score()
         else:
             self.stop()
             self.display_winner(screen)
@@ -45,7 +41,7 @@ class Game():
         self.ball.speed_y = 0
 
     def restart_round(self, screen):
-        self.ball.ball.center = (screen.get_width()/2, screen.get_height()/2)
+        self.ball.center = (screen.get_width()/2, screen.get_height()/2)
         self.ball.speed_x *= choice((-1, 1))
         self.ball.speed_y *= choice((-1, 1))
 
@@ -57,6 +53,6 @@ class Game():
         self.opponent.update_score_text(screen, 0.75)
         self.update(screen)
 
-        self.ball.draw(screen)
         self.player.draw_paddle(screen)
         self.opponent.draw_paddle(screen)
+        self.ball.draw(screen)

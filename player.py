@@ -4,7 +4,7 @@ paddle_width = 10
 paddle_height = 80
 
 class Player():
-    def __init__(self, x, y, name):
+    def __init__(self, x, y, name):     
         adj_x = max(0, x - paddle_width)
         adj_y = y - paddle_height/2
 
