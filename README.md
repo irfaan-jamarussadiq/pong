@@ -5,7 +5,7 @@ A game of Pong written in Python using object oriented design. Use the up and do
 
 ## Usage
 1. Download the program zip file.
-2. In a windows command prompt or terminal, go to the directory of the program (cd PROJECT_LOCATION)
+2. In a windows command prompt or terminal, go to the directory of the program (cd <name of project folder>)
 3. Run the program with the command 'py main.py' Make sure you have python and pygame packages installed.
 
 ## Program Output
