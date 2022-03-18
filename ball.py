@@ -8,8 +8,8 @@ class Ball():
         adj_x = x - ball_size/2
         adj_y = y - ball_size/2
         self.ball = pygame.Rect(adj_x, adj_y, ball_size, ball_size)
-        self.speed_x = choice((-2, 2))
-        self.speed_y = choice((-2, 2))
+        self.speed_x = 5
+        self.speed_y = 7
 
     def move(self, screen, player, opponent):
         if self.collided_with_paddle(player) or self.collided_with_paddle(opponent):
