@@ -13,11 +13,15 @@ class Player():
         self.score = 0
         self.name = name
 
-    def move_up(self, change):
-        self.paddle.move_ip(0, -change)
+    def move_up(self, change, screen):
+        _ = screen.get_size()        
+        if self.paddle.top + change >= 0:
+            self.paddle.move_ip(0, -change)
 
-    def move_down(self, change):
-        self.paddle.move_ip(0, change)
+    def move_down(self, change, screen):
+        _, height = screen.get_size()
+        if self.paddle.bottom + change <= height:
+            self.paddle.move_ip(0, change)
         
     def draw_paddle(self, screen):
         pygame.draw.rect(screen, pygame.Color('white'), self.paddle)
