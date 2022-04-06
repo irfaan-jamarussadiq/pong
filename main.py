@@ -14,14 +14,15 @@ pygame.display.set_caption('Pong')
 clock = pygame.time.Clock()
 
 while True:
+    keys = pygame.key.get_pressed()
     for event in pygame.event.get():        
         if event.type == pygame.QUIT:
             pygame.quit()
             sys.exit()
         elif event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_UP:
+            if keys[pygame.KEYUP]:
                 my_game.player.move_up(20)
-            elif event.key == pygame.K_DOWN:
+            elif keys[pygame.KEYUP]:
                 my_game.player.move_down(20)
             elif event.key == pygame.K_a:
                 my_game.opponent.move_up(20)
