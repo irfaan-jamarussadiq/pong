@@ -21,8 +21,7 @@ class Game():
     def update(self, screen):
         self.ball.move(screen, self.player, self.opponent)
         if self.get_winner():
-            self.ball.stop()
-            self.display_winner(screen)
+            self.end_game(screen)
         elif self.ball.hitbox.left <= 0:
             self.opponent.score += 1
             self.restart_round(screen)
@@ -42,9 +41,10 @@ class Game():
         elif self.opponent.score >= 11:
             return self.opponent
 
-    def display_winner(self, screen):
+    def end_game(self, screen):
         # Display winner name
         winner = self.get_winner()
+        self.ball.stop()
         font = pygame.font.Font(FONT, 24)
         player_text = font.render(f'{winner.name} wins!', False, (255, 255, 255))
         x_pos = screen.get_width() * (0.15 if winner == self.player else 0.60)
