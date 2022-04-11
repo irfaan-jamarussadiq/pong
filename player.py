@@ -22,24 +22,6 @@ class Player():
         _, height = screen.get_size()
         if self.paddle.bottom + change <= height:
             self.paddle.move_ip(0, change)
-        
-    def draw_paddle(self, screen):
-        pygame.draw.rect(screen, pygame.Color('white'), self.paddle)
 
-    def update_score(self):
-        self.score += 1
-
-    def reset_score(self):
-        self.score = 0
-
-    def update_score_text(self, screen, x):
-        font = pygame.font.Font('freesansbold.ttf', 32)
-        player_text = font.render(f'{self.score}', False, (255, 255, 255))
-        screen.blit(player_text, (int (screen.get_width() * x), 20))
-
-    def display_winner_text(self, screen, x):
-        font = pygame.font.Font('freesansbold.ttf', 32)
-        player_text = font.render(f'{self.name} wins!', False, (255, 255, 255))
-
-        loc = (int (screen.get_width() * x), 80)
-        screen.blit(player_text, loc)
+    def __eq__(self, other):
+        return isinstance(other, Player) and self.name == other.name

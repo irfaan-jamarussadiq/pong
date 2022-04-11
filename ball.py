@@ -7,20 +7,22 @@ class Ball():
     def __init__(self, x, y):
         adj_x = x - ball_size/2
         adj_y = y - ball_size/2
-        self.ball = pygame.Rect(adj_x, adj_y, ball_size, ball_size)
+        self.hitbox = pygame.Rect(adj_x, adj_y, ball_size, ball_size)
         self.speed_x = 5
         self.speed_y = 7
 
     def move(self, screen, player, opponent):
         if self.collided_with_paddle(player) or self.collided_with_paddle(opponent):
             self.speed_x *= -1
-        if self.ball.top <= 0 or self.ball.bottom >= screen.get_height():
+        if self.hitbox.top <= 0 or self.hitbox.bottom >= screen.get_height():
             self.speed_y *= -1
 
-        self.ball.move_ip(self.speed_x, self.speed_y)
+        self.hitbox.move_ip(self.speed_x, self.speed_y)
 
     def collided_with_paddle(self, player):
-        return self.ball.colliderect(player.paddle)
+        return self.hitbox.colliderect(player.paddle)
 
-    def draw(self, screen):
-        pygame.draw.ellipse(screen, pygame.Color('white'), self.ball)
+    def stop(self):
+        self.speed_x = 0
+        self.speed_y = 0
+        
