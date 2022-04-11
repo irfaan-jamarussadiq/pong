@@ -3,14 +3,17 @@ from random import choice
 from player import Player
 from ball import Ball
 
+pygame.font.init()
+
 BACKGROUND_COLOR = pygame.Color((20, 20, 20))
 FOREGROUND_COLOR = pygame.Color('white')
 BALL_COLOR = pygame.Color('white')
 PADDLE_COLOR = pygame.Color('white')
-FONT = 'freesansbold.ttf'
+FONT = pygame.font.Font('freesansbold.ttf', 16)
+SCORE_FONT = pygame.font.Font('freesansbold.ttf', 24)
 
 class Game():
-    BALL_SIZE = 20
+    BALL_SIZE = 16
     BALL_SPEED = (5, 7)
 
     def __init__(self, width, height, player_name='Player', opponent_name='Opponent'):
@@ -30,8 +33,7 @@ class Game():
             self.restart_round(screen)
 
     def update_score(self, screen, player):
-        font = pygame.font.Font(FONT, 32)
-        player_text = font.render(f'{player.score}', False, (255, 255, 255))
+        player_text = SCORE_FONT.render(f'{player.score}', False, (255, 255, 255))
         x_pos = screen.get_width() * (0.25 if self.player == player else 0.75)
         screen.blit(player_text, (int(x_pos), 20))
 
@@ -45,15 +47,15 @@ class Game():
         # Display winner name
         winner = self.get_winner()
         self.ball.stop()
-        font = pygame.font.Font(FONT, 24)
-        player_text = font.render(f'{winner.name} wins!', False, (255, 255, 255))
+        player_text = FONT.render(f'{winner.name} wins!', False, (255, 255, 255))
         x_pos = screen.get_width() * (0.15 if winner == self.player else 0.60)
-        screen.blit(player_text, (int(x_pos), 80))
+        location = (int(x_pos), 80)
+        screen.blit(player_text, location)
 
         # Display "Play again?" text
-        x_pos = screen.get_width() * (0.20 if winner == self.player else 0.75)
-        location = (int(x_pos), 80)
-        play_again_text = font.render('Play Again?', False, (255, 255, 255))
+        play_again_rect = pygame.Rect(100, 100, 50, 50)
+        pygame.draw.rect(screen, BACKGROUND_COLOR, play_again_rect)
+        play_again_text = FONT.render('Play Again?', False, (255, 255, 255))
         screen.blit(play_again_text, (location[0], 120))
 
         # TODO: Replace this with button press.
@@ -81,6 +83,6 @@ class Game():
         self.update_score(screen, self.opponent)
         self.update(screen)
 
-        pygame.draw.rect(screen, PADDLE_COLOR, self.player.paddle)
-        pygame.draw.rect(screen, PADDLE_COLOR, self.opponent.paddle)
+        pygame.draw.rect(screen, PADDLE_COLOR, self.player.paddle.hitbox)
+        pygame.draw.rect(screen, PADDLE_COLOR, self.opponent.paddle.hitbox)
         pygame.draw.ellipse(screen, BALL_COLOR, self.ball.hitbox)
