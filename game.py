@@ -41,8 +41,6 @@ class Game():
             return self.player
         elif self.opponent.score >= 11:
             return self.opponent
-        else:
-            return None
 
     def display_winner(self, screen):
         # Display winner name
