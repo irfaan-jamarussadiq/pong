@@ -14,7 +14,7 @@ class Ball():
         self.hitbox.move_ip(self.speed[0], self.speed[1])
 
     def collided_with_paddle(self, player):
-        return self.hitbox.colliderect(player.paddle)
+        return self.hitbox.colliderect(player.paddle.hitbox)
 
     def stop(self):
         self.speed = (0, 0)
