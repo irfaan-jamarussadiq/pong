@@ -6,13 +6,14 @@ from ball import Ball
 BACKGROUND_COLOR = pygame.Color((20, 20, 20))
 BALL_SIZE = 20
 BALL_SPEED = (5, 7)
+PADDLE_SIZE = (10, 80)
 WHITE = pygame.Color('white')
 FONT = 'freesansbold.ttf'
 
 class Game():
     def __init__(self, width, height, player_name='Player', opponent_name='Opponent'):
-        self.player = Player(0, height/2, player_name)
-        self.opponent = Player(width, height/2, opponent_name)
+        self.player = Player(0, height/2, PADDLE_SIZE[0], PADDLE_SIZE[1], player_name)
+        self.opponent = Player(width, height/2, PADDLE_SIZE[0], PADDLE_SIZE[1], opponent_name)
         self.ball = Ball(width/2, height/2, BALL_SPEED, BALL_SIZE)
 
     def update(self, screen):
