@@ -1,6 +1,6 @@
 import pygame
 from random import choice
-from paddle import Paddle
+from player import Player
 from ball import Ball
 
 BACKGROUND_COLOR = pygame.Color((20, 20, 20))
@@ -14,8 +14,8 @@ class Game():
     BALL_SPEED = (5, 7)
 
     def __init__(self, width, height, player_name='Player', opponent_name='Opponent'):
-        self.player = Paddle(0, height/2, player_name)
-        self.opponent = Paddle(width, height/2, opponent_name)
+        self.player = Player(0, height/2, player_name)
+        self.opponent = Player(width, height/2, opponent_name)
         self.ball = Ball(width/2, height/2, Game.BALL_SPEED, Game.BALL_SIZE)
 
     def update(self, screen):
