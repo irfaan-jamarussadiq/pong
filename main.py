@@ -19,13 +19,13 @@ while True:
             sys.exit()
     keys = pygame.key.get_pressed()
     if keys[pygame.K_w]:
-        pong_game.player.move_up(PADDLE_DISPLACEMENT, screen)
+        pong_game.player.paddle.move_up(PADDLE_DISPLACEMENT, screen)
     elif keys[pygame.K_d]:
-        pong_game.player.move_down(PADDLE_DISPLACEMENT, screen)  
+        pong_game.player.paddle.move_down(PADDLE_DISPLACEMENT, screen)  
     elif keys[pygame.K_p]:
-        pong_game.opponent.move_up(PADDLE_DISPLACEMENT, screen)
+        pong_game.opponent.paddle.move_up(PADDLE_DISPLACEMENT, screen)
     elif keys[pygame.K_l]:
-        pong_game.opponent.move_down(PADDLE_DISPLACEMENT, screen) 
+        pong_game.opponent.paddle.move_down(PADDLE_DISPLACEMENT, screen) 
     
     pong_game.draw(screen)
     pygame.display.update()
