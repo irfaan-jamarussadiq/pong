@@ -1,20 +1,11 @@
 import pygame
 
-paddle_width = 10
-paddle_height = 80
-
 class Player():
-    def __init__(self, x, y, name):     
-        adj_x = max(0, x - paddle_width)
-        adj_y = y - paddle_height/2
-
-        self.paddle = pygame.Rect(adj_x, adj_y, paddle_width, paddle_height)
-        self.speed = 10
-        self.score = 0
+    def __init__(self, x, y, width, height, name):     
+        self.paddle = pygame.Rect(max(0, x - width), y - height/2, width, height)
         self.name = name
 
-    def move_up(self, change, screen):
-        _ = screen.get_size()        
+    def move_up(self, change, screen):     
         if self.paddle.top + change >= 0:
             self.paddle.move_ip(0, -change)
 
