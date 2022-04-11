@@ -1,20 +1,22 @@
 import pygame
 from random import choice
-from player import Player
+from paddle import Paddle
 from ball import Ball
 
 BACKGROUND_COLOR = pygame.Color((20, 20, 20))
-BALL_SIZE = 20
-BALL_SPEED = (5, 7)
-PADDLE_SIZE = (10, 80)
-WHITE = pygame.Color('white')
+FOREGROUND_COLOR = pygame.Color('white')
+BALL_COLOR = pygame.Color('white')
+PADDLE_COLOR = pygame.Color('white')
 FONT = 'freesansbold.ttf'
 
 class Game():
+    BALL_SIZE = 20
+    BALL_SPEED = (5, 7)
+
     def __init__(self, width, height, player_name='Player', opponent_name='Opponent'):
-        self.player = Player(0, height/2, PADDLE_SIZE[0], PADDLE_SIZE[1], player_name)
-        self.opponent = Player(width, height/2, PADDLE_SIZE[0], PADDLE_SIZE[1], opponent_name)
-        self.ball = Ball(width/2, height/2, BALL_SPEED, BALL_SIZE)
+        self.player = Paddle(0, height/2, player_name)
+        self.opponent = Paddle(width, height/2, opponent_name)
+        self.ball = Ball(width/2, height/2, Game.BALL_SPEED, Game.BALL_SIZE)
 
     def update(self, screen):
         self.ball.move(screen, self.player, self.opponent)
@@ -76,11 +78,11 @@ class Game():
     def draw(self, screen):
         screen.fill(BACKGROUND_COLOR)
         width = screen.get_width()
-        pygame.draw.line(screen, WHITE, [width/2, 0], [width/2, width], 1)
+        pygame.draw.line(screen, FOREGROUND_COLOR, [width/2, 0], [width/2, width], 1)
         self.update_score(screen, self.player)
         self.update_score(screen, self.opponent)
         self.update(screen)
 
-        pygame.draw.rect(screen, WHITE, self.player.paddle)
-        pygame.draw.rect(screen, WHITE, self.opponent.paddle)
-        pygame.draw.ellipse(screen, WHITE, self.ball.hitbox)
+        pygame.draw.rect(screen, PADDLE_COLOR, self.player.paddle)
+        pygame.draw.rect(screen, PADDLE_COLOR, self.opponent.paddle)
+        pygame.draw.ellipse(screen, BALL_COLOR, self.ball.hitbox)
