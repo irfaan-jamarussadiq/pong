@@ -38,42 +38,22 @@ class Game():
         screen.blit(player_text, (int(x_pos), 20))
 
     def get_winner(self):
-        if self.player.score >= 11:
+        if self.player.score >= 1:
             return self.player
-        elif self.opponent.score >= 11:
+        elif self.opponent.score >= 1:
             return self.opponent
 
     def end_game(self, screen):
-        # Display winner name
         winner = self.get_winner()
         self.ball.stop()
         player_text = FONT.render(f'{winner.name} wins!', False, (255, 255, 255))
-        x_pos = screen.get_width() * (0.15 if winner == self.player else 0.60)
+        x_pos = screen.get_width() * (0.20 if winner == self.player else 0.60)
         location = (int(x_pos), 80)
         screen.blit(player_text, location)
-
-        # Display "Play again?" text
-        play_again_rect = pygame.Rect(100, 100, 50, 50)
-        pygame.draw.rect(screen, BACKGROUND_COLOR, play_again_rect)
-        play_again_text = FONT.render('Play Again?', False, (255, 255, 255))
-        screen.blit(play_again_text, (location[0], 120))
-
-        # TODO: Replace this with button press.
-        # mouse = pygame.mouse.get_pos()
-        # mouse_x_in_rect = mouse[0] >= rect.left and mouse[0] <= rect.right
-        # mouse_y_in_rect = mouse[1] >= rect.top and mouse[1] <= rect.bottom
-        # if mouse_x_in_rect and mouse_y_in_rect:
-        #     self.restart_game(screen)
 
     def restart_round(self, screen):
         self.ball.hitbox.center = (screen.get_width()/2, screen.get_height()/2)
         self.ball.speed = (self.ball.speed[0] * choice((-1, 1)), self.ball.speed[1] * choice((-1, 1)))
-
-    def restart_game(self, screen):
-        width = screen.get_width()
-        height = screen.get_height()
-        self.__init__(width, height, self.player.name, self.opponent.name)
-        self.restart_round(screen)
 
     def draw(self, screen):
         screen.fill(BACKGROUND_COLOR)
